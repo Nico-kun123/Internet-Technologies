@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Что-то типо, ну вы поняли (VK API)</title>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <style>
+            .logo
+            {
+            	background-color: rgb(0, 225, 255);
+	            font-style: normal;
+	            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	            font-weight: 1000;
+
+                font-size: x-large;
+	            padding-top: 10px;
+	            padding-bottom: 10px;
+	            line-height: 150%;
+                border-radius: 15px;
+
+            	text-shadow: 1px 1px 8px rgb(255, 255, 255);
+                box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	            text-justify: auto;
+	            text-align: center;
+            }
+
+            .field
+            {
+                background-color: rgb(253, 253, 253);
+	            border-radius: 9px;
+                padding: 10px;
+
+	            margin: 8px;
+                box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            button
+            {
+                box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                /* text-shadow: 1px 1px 8px rgb(139, 139, 139); */
+                
+                background-color: rgb(214, 214, 214);
+                color: rgb(0, 0, 0);
+                font-style: normal;
+	            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: large;
+
+                text-justify: auto;
+	            text-align: center;
+                border-color: rgb(0, 0, 0);
+            }
+
+            button:active
+            {
+                box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                /* text-shadow: 1px 1px 8px rgb(139, 139, 139); */
+                
+                background-color: rgb(113, 216, 241);
+                color: rgb(0, 0, 0);
+                font-style: normal;
+	            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: large;
+
+                text-justify: auto;
+	            text-align: center;
+                border-color: rgb(0, 0, 0);
+            }
+
+            .button_field
+            {
+                padding: 10px;
+                margin:10px;
+                background-color: white;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-style: normal;
+	            margin: 20px;
+                border-radius: 15px;
+                font-size: large;
+            }
+
+            html{
+                background-color: rgb(70, 105, 218);
+          
+            }
+
+            ul{
+                list-style: none;
+                background-color: rgb(255, 255, 255);
+            }
+
+            img
+            {
+                border-radius: 15px;
+                width: 100px;
+                border-color:black;
+                border-width: 10px;
+            }
+
+            .card{
+                /* box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+                margin-left: -30px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-top: auto;
+                padding: 15px;
+                border-radius: 15px;
+                background-color: rgb(218, 218, 218);
+                outline-width: 10px;
+                outline-color: black;
+            }
+
+            .inf
+            {
+                color : rgb(0, 0, 0);
+                text-shadow: 1px 1px 1px rgb(42, 206, 218);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-style: normal;
+	            margin: auto;
+                padding: auto;
+                font-size: large;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <div class="logo"> ❤ Интернет-технологии ❤ </div>
+        
+        <div class="button_field" align="center">
+            <p> Чтобы вывести список друзей, нажмите на кнопку</p>
+            <button id="load">Список</button>
+        </div>
+       
+        <div class="field">
+            <ul id="list"> </ul>
+        </div>
+
+        <script>
+            $('#load').on('click', loadFriends);
+
+            function getURL(method, params){
+                if (!method) throw new Error("Метод не указан!");
+
+                params = params || {};
+                params['access_token'] = "4e7fa23f2c1e977e09110a134dbdec45212ecb02c05ae61352ac4d8b52222ba0d33918950d1839d9eeafb";
+                return 'https://api.vk.com/method/' + method + '?' + $.param(params) + "&v=5.81";
+            };
+            
+            function send_Request(method, params, func){
+                
+                $.ajax({
+                    url: getURL(method, params),
+                    method: "GET",
+                    dataType: "JSONP",
+                    success: func
+                });
+            };
+
+            function loadFriends(){
+                send_Request ("friends.search", {count: 9, fields: "photo_100, bdate, online, domain"}, function (data){
+                    showFriends(data.response);
+                });
+            };
+
+            function showFriends(friends){
+                var html = '';
+                console.log(friends);
+                for (var i = 0; i < friends.items.length; i++)
+                {
+                    if (friends.items[i].bdate === undefined)
+                        var f = "Не написано :(";
+                        else var f = friends.items[i].bdate;
+
+                    if (friends.items[i].online === 0)
+                        var on = "Не в сети";
+                        else var on = "В сети";
+
+                    html += '<li>'
+                                + '<div class="card">'
+                                    +'<a target="_blank" href="https://vk.com/id' + friends.items[i].id + '">'
+                                        +'<img src="' + friends.items[i].photo_100 +'" />'
+                                        + '<div class="inf">'
+                                            + '<h3>' + friends.items[i].first_name + ' ' + friends.items[i].last_name + ' (' + friends.items[i].domain + ')</h3>'
+                                            + '<p> Дата рождения: ' + f + '</p>'
+                                            + ' <strong><p style="color:red;">' + on + '</p> </strong>'
+                                        +'</div>'
+                                    +'</a>'
+                                + '</div>'
+                            +'</li>';
+                }
+
+                $('#list').html(html);  
+            };
+        </script>
+
+<!-- https://vk.com/id78830022 -->
+        <!-- 4e7fa23f2c1e977e09110a134dbdec45212ecb02c05ae61352ac4d8b52222ba0d33918950d1839d9eeafb
+
+        https://oauth.vk.com/authorize?client_id=8172593&display=page&redirect_uri=&scope=friends&response_type=token&v=5.52
+
+     https://oauth.vk.com/blank.html#access_token=4e7fa23f2c1e977e09110a134dbdec45212ecb02c05ae61352ac4d8b52222ba0d33918950d1839d9eeafb&expires_in=86400&user_id=380306274 -->
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- <script src="Js/app.js"></script> -->
+
+  <title>Authorization</title>
+
+  <!-- Заголовок страницы -->
+  <div class="header" style="text-align: center;">
+    <h1>User Authorization</h1>
+  </div>
+
+  <!-- Поле для авторизации -->
+  <div class="card" style="background-color:aqua;
+                           margin: 10px;
+                           padding: 10px;">
+    <form method = "POST" action="http://localhost:8000/index.html" name="login_form" >
+         <input type ="text"     name="username" placeholder="Your Login"   style="font-size: larger; margin-right: 10px; margin-bottom: 10px">
+         <input type ="password" name="password" placeholder="Your Password"  style="font-size: larger;">
+      <p><input type ="submit"   value="Submit"   style="font-size: larger;">
+    </form>
+  </div>
+
+</html>

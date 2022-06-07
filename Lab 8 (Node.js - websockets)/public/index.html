@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Доска для рисования</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<script>
+
+  function myFunction(clsName) {
+    $(document).ready(function()
+    {
+      var element = document.getElementsByClassName(clsName);   
+      $(element).parents('.colors').find('.selected').removeClass('selected').end().end().addClass('selected');
+    });
+  };
+
+</script>
+
+<body>
+
+  <header>
+    <div class="logo"> ❤ Интернет-технологии ❤ </div>
+  </header>
+  
+  <div class="field">  
+    
+    <div class="colors">
+      <div class="text" align="center"> <h2> Brush <br> Color</h2> </div>
+
+      <div class="color red"    onclick="myFunction('red')"> </div>
+      <div class="color orange" onclick="myFunction('orange')"></div>
+      <div class="color yellow" onclick="myFunction('yellow')"></div>
+      <div class="color lime"   onclick="myFunction('lime')"></div>
+      <div class="color green"  onclick="myFunction('green')"></div>
+      <div class="color cyan"   onclick="myFunction('cyan')"></div>
+      <div class="color blue"   onclick="myFunction('blue')"></div>
+      <div class="color purple" onclick="myFunction('purple')"></div>
+      <div class="color pink"   onclick="myFunction('pink')"></div>
+      <div class="color brown"  onclick="myFunction('brown')"></div>
+      <div class="color gray"   onclick="myFunction('gray')"></div>
+      <div class="color black"  onclick="myFunction('black')"></div>
+      
+      <div class="color white" onclick="myFunction('white')" > Eraser </div>
+
+      
+      <button id="clear" class="btn btn-danger" onclick="clear()"> <strong> Clear Canvas </strong>
+        <!-- <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> -->
+      </button>
+    </div>
+
+    <canvas class="whiteboard" style="height: auto; width: auto;"></canvas>
+
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
+
+</html>

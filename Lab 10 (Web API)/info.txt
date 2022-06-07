@@ -1,0 +1,3 @@
+ID приложения		8172593
+Защищённый ключ		nooPy6M6VNDBuYJH8D55
+Сервисный ключ доступа	d6df5be5d6df5be5d6df5be5cbd6a3efd4dd6dfd6df5be5b4572366fb9ba01067fffb97

@@ -1,0 +1,7 @@
+{
+    "Users":
+    [
+       {"name":"nico", "pass":"123"},
+       {"name":"Кот", "pass":"img/cat.jpeg"}
+    ]
+ }

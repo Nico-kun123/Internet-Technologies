@@ -1,0 +1,8 @@
+{
+   "gallery":"My gallery",
+   "images":[
+      {"name":"Крутой кот", "file":"img/swag cat.jpeg"},
+      {"name":"Кот", "file":"img/cat.jpeg"},
+      {"name":"Zombatar", "file":"img/Zombatar_1.jpeg"}
+   ]
+}
