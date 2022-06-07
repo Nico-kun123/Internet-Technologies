@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head><link rel="stylesheet" type="text/css" href="http://distant.ikit.sfu-kras.ru/theme/standard/styles.php" />
+<link rel="stylesheet" type="text/css" href="http://distant.ikit.sfu-kras.ru/theme/standardwhite/styles.php" />
+
+
+<title>example</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=YwwpojOvxB--2J-eqaz_BkYxvFKIGBvieZLqJUbvFkJpjA49nCU5f3IsqmqVrsR4yYS6qWYF-kfe-vwYnSwVtq1tZ9Z-SjPCdoi6cD529ty032FhE5a_1iJXBOW9GxeDO_aPQvKdxUWFjzKaxnD_m6XBI5h0i5XAq45E7qhbjWA" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9lLnNmdS1rcmFzLnJ1L3BsdWdpbmZpbGUucGhwLzEwMjA0NzYvbW9kX2ZvbGRlci9jb250ZW50LzAvY2FudmFzX2V4YW1wbGVfMS5odG0_Zm9yY2Vkb3dubG9hZD0x"/><script>
+var fills = [[255.0,0.0,0.0],[0.0,255.0,0.0],[0.0,0.0,255.0],[255.0,255.0,0.0]];
+var cellColors;
+var nextColors;
+var c;
+var ctx;
+var objI = 0;
+var objJ = 0;
+var frame = 0;
+var colorFactor = 0.0;
+
+function genColors(){
+  var newColors = new Array();
+  for (var i=0; i<10; ++i){
+    newColors[i] = new Array();
+    for (var j=0; j<10; ++j){
+      newColors[i][j] = fills[Math.round(Math.random(3)*3)];
+    }
+  }
+  return newColors;
+}
+
+function draw(){
+  ctx.clearRect(0,0,500,500);
+  for (var i=0; i<10; ++i)
+  {
+    ctx.translate(25,0);
+    if (i%2==0) ctx.translate(0,10);
+    for (var j=0; j<10; ++j)
+    {
+      var colorA = cellColors[i][j];
+      var colorB = nextColors[i][j];
+      var colorR = new Array();
+      colorR[0] = Math.floor(colorA[0]*(1.0-colorFactor)+colorB[0]*colorFactor);
+      colorR[1] = Math.floor(colorA[1]*(1.0-colorFactor)+colorB[1]*colorFactor);
+      colorR[2] = Math.floor(colorA[2]*(1.0-colorFactor)+colorB[2]*colorFactor);
+      ctx.fillStyle = "rgb("+colorR[0]+","+colorR[1]+","+colorR[2]+")";
+      //ctx.strokeStyle = fills[0];
+      
+      if (i==objI&&j==objJ){
+
+      }
+
+      ctx.translate(0,22);
+      ctx.beginPath();
+      ctx.moveTo(20,0);
+      ctx.lineTo(30,10);
+      ctx.lineTo(20,20);
+      ctx.lineTo(10,20);
+      ctx.lineTo(0,10);
+      ctx.lineTo(10,0);
+      ctx.lineTo(20,0);
+
+      ctx.fill();
+
+      //if (i==objI&&j==objJ)
+      //  ctx.stroke();
+      //else
+      //  ctx.fill;
+
+    }
+    if (i%2==0) ctx.translate(0,-10);
+    ctx.translate(0,-22*10);
+  }
+  ctx.translate(-25*10,0);
+}
+function redraw(){
+  if (frame%20==0){
+    cellColors = nextColors;
+    nextColors = genColors();
+    colorFactor = 0.0;
+  }
+  draw();
+  colorFactor+=0.05;
+  frame++;
+}
+function onmove(evt){
+  objI = Math.floor((evt.clientX-25)/25);
+  objJ = Math.floor((evt.clientY-25)/22);
+}
+function init(){
+  c = document.getElementById("canvas1");
+  c.addEventListener("mousemove",onmove,false)
+  ctx = c.getContext("2d");
+  cellColors = genColors();
+  nextColors = genColors();
+  window.setInterval(redraw,50);
+}
+</script>
+</head>
+<body onload="init()">
+<canvas id="canvas1" width=500px height=500px></canvas>
+</body>
+</html>

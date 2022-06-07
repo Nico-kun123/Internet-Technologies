@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head><link rel="stylesheet" type="text/css" href="http://distant.ikit.sfu-kras.ru/theme/standard/styles.php" />
+<link rel="stylesheet" type="text/css" href="http://distant.ikit.sfu-kras.ru/theme/standardwhite/styles.php" />
+
+<title>example</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=v4DUduoxFnIm2mZiRcpQ41abI0Eyv6V5qWTCb56tg1f8mEUIkNWd2WX1oBkiyaycuW9rZ3eOsU66W7BuvBh02em5w2L6uBpYVmHXmhn3ogSBMeOGtKY2PeuDd5DXVSmAm4Gs7BN-KkLQPmCFSO7fkCJV5n1-acK3lsUOe6QiZXM" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9lLnNmdS1rcmFzLnJ1L3BsdWdpbmZpbGUucGhwLzEwMjA0NzYvbW9kX2ZvbGRlci9jb250ZW50LzAvY2FudmFzX2V4YW1wbGVfMi5odG1sP2ZvcmNlZG93bmxvYWQ9MQ"/><script>
+var fills = new Array("#ff0000","#00ff00", "#0000ff","#ffff00");
+var c;
+var ctx;
+var objI = 0;
+var objJ = 0;
+function draw(){
+  ctx.fillStyle = "#FF0000";
+  for (var i=0; i<10; ++i)
+  {
+    ctx.translate(25,0);
+    if (i%2==0) ctx.translate(0,10);
+    for (var j=0; j<10; ++j)
+    {
+      //ctx.fillStyle = fills[Math.round(Math.random(3)*3)];
+      ctx.fillStyle = fills[0];
+      if (i==objI&&j==objJ)
+        ctx.fillStyle = fills[1];
+      ctx.translate(0,22);
+      ctx.beginPath();
+      ctx.moveTo(20,0);
+      ctx.lineTo(30,10);
+      ctx.lineTo(20,20);
+      ctx.lineTo(10,20);
+      ctx.lineTo(0,10);
+      ctx.lineTo(10,0);
+      ctx.lineTo(20,0);
+      ctx.fill();
+    }
+    if (i%2==0) ctx.translate(0,-10);
+    ctx.translate(0,-22*10);
+  }
+  ctx.translate(-25*10,0);
+}
+function redraw(){
+  draw();
+}
+function onmove(evt){
+  objI = Math.floor((evt.clientX-25)/25);
+  objJ = Math.floor((evt.clientY-25)/22);
+}
+function init(){
+  c = document.getElementById("canvas1");
+  c.addEventListener("mousemove",onmove,false)
+  ctx = c.getContext("2d");
+  window.setInterval(redraw,100);
+}
+</script>
+</head>
+<body onload="init()">
+<canvas id="canvas1" width=500px height=500px></canvas>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Maria",
+        "description":"Zero place",
+        "emails": "IT0.1@gmail.com",
+        "phone": "+70000000000"
+    },
+    {
+        "title": "Oleg",
+        "description":"First place",
+        "emails": "IT1.1@gmail.com",
+        "phone": "+71111111111"
+    },
+    {
+        "title": "Ekaterina",
+        "description":"Second place",
+        "emails": "IT2.1@gmail.com",
+        "phone": "+72222222222"
+    },
+    {
+        "title": "Valeria",
+        "description":"Third place", 
+        "emails": "IT3.1@gmail.com",
+        "phone": "+73333333333" 
+    },
+    {
+        "title": "Alina",
+        "description":"Four place",
+        "emails": "IT4.1@gmail.com",
+        "phone": "+744444444444" 
+    },
+    {
+        "title": "Egor",
+        "description":"Five place",
+        "emails": "IT5.1@gmail.com",
+        "phone": "+75555555555" 
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Место #0",
+        "description":"Zero place",
+        "emails": "email0.1@yandex.ru",
+        "phone": "+7 Number 0"
+    },
+    {
+        "title": "Место #1",
+        "description":"First place",
+        "emails": "email1.1@yandex.ru",
+        "phone": "+7 Number 1"
+    },
+    {
+        "title": "Место #2",
+        "description":"Second place",
+        "emails": "email2.1@yandex.ru",
+        "phone": "+7 Number 2"
+    },
+    {
+        "title": "Место #3",
+        "description":"Third place", 
+        "emails": "3.1@yandex.ru",
+        "phone": "+7 Number 3" 
+    },
+    {
+        "title": "Место #4",
+        "description":"Four place",
+        "emails": "email4.1@yandex.ru",
+        "phone": "+7 Number 4" 
+    }
+]
